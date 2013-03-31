@@ -1,0 +1,21 @@
+<h1>Article types</h1>
+
+<% unless @article_types.blank? -%>
+
+<ul>
+<% @article_types.each do |article_type| -%>
+  <li>
+    <%= link_to article_type.name, article_type %>
+    <ul>
+    <% article_type.fields.keys.each do |key| -%>
+      <li><%= key %></li>
+    <% end -%>
+    </ul>
+  </li>
+<% end -%>
+</ul>
+
+<br />
+
+<%= link_to 'New Article Type', new_article_type_path %>
+<% end -%>

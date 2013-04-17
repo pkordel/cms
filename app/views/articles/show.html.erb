@@ -10,10 +10,7 @@
   <%= @article.body %>
 </p>
 
-<p>
-  <strong>Metadata:</strong>
-  <%= @article.metadata %>
-</p>
+<%= render "/articles/#{@type}/metadata" %>
 
-<%= link_to 'Edit', edit_article_path(@article) %> |
+<%= link_to 'Edit', edit_article_path(@article.becomes(Article)) %> |
 <%= link_to 'Back', articles_path %>

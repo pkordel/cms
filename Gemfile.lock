@@ -52,6 +52,7 @@ GEM
     activerecord-deprecated_finders (0.0.3)
     arel (4.0.0.beta2)
     atomic (1.1.8)
+    awesome_print (1.1.0)
     builder (3.1.4)
     capybara (2.1.0)
       mime-types (>= 1.16)
@@ -77,6 +78,7 @@ GEM
     execjs (1.4.0)
       multi_json (~> 1.0)
     hike (1.2.2)
+    hirb (0.7.1)
     i18n (0.6.4)
     jbuilder (1.0.2)
       activesupport (>= 3.0.0)
@@ -157,8 +159,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  awesome_print
   coffee-rails (~> 4.0.0.beta1)
   debugger
+  hirb
   jbuilder (~> 1.0.1)
   jquery-rails!
   minitest-rails

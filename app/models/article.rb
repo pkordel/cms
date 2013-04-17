@@ -1,3 +1,3 @@
 class Article < ActiveRecord::Base
-  belongs_to :article_type
+  hstore_accessor :metadata, :tag, :pronunciation, :etymology, :alternative_form
 end

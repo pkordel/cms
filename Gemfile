@@ -41,10 +41,13 @@ gem 'unicorn'
 # Deploy with Capistrano
 # gem 'capistrano', group: :development
 
-# To use debugger
-gem 'debugger', group: [:development, :test]
+group :development do
+  gem 'awesome_print'
+  gem 'hirb'
+end
 
 group :development, :test do
+  gem 'debugger'
   gem 'minitest-rails'
   gem 'minitest-rails-capybara'
 end

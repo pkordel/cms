@@ -11,18 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130330173943) do
+ActiveRecord::Schema.define(version: 20130417130817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
-
-  create_table "article_types", force: true do |t|
-    t.string   "name"
-    t.json     "fields"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "articles", force: true do |t|
     t.string   "title"
@@ -30,7 +23,7 @@ ActiveRecord::Schema.define(version: 20130330173943) do
     t.hstore   "metadata"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "article_type_id"
+    t.string   "type"
   end
 
   add_index "articles", ["metadata"], name: "articles_gin_metadata", using: :gin

@@ -42,7 +42,7 @@ gem 'unicorn'
 # gem 'capistrano', group: :development
 
 # To use debugger
-# gem 'debugger', group: [:development, :test]
+gem 'debugger', group: [:development, :test]
 
 group :development, :test do
   gem 'minitest-rails'

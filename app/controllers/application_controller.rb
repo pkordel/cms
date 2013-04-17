@@ -7,7 +7,10 @@ class ApplicationController < ActionController::Base
   private
 
   def set_article_type
-    @type = params[:type] if params[:type] && ARTICLE_TYPES.include?(params[:type])
-    @type ||= 'general'
+    @type = if (article_type = params[:type]) && ARTICLE_TYPES.include?(article_type)
+      article_type
+    else
+      'Article::General'
+    end
   end
 end

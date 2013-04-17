@@ -1,16 +1,21 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
-  <%= @article.title %>
+  <strong>Headword:</strong>
+  <%= @article.headword %>
 </p>
 
 <p>
-  <strong>Body:</strong>
-  <%= @article.body %>
+  <strong>Clarification:</strong>
+  <%= @article.clarification %>
 </p>
 
-<%= render "/articles/#{@type}/metadata" %>
+<p>
+  <strong>Xhtml:</strong>
+  <%= @article.xhtml %>
+</p>
 
-<%= link_to 'Edit', edit_article_path(@article.becomes(Article)) %> |
+<%= render "/articles/#{@type.split('::').last.downcase}/metadata" %>
+
+<%= link_to 'Edit', edit_article_path(@article, type: @article.type) %> |
 <%= link_to 'Back', articles_path %>

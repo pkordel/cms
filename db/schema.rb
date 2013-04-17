@@ -18,8 +18,9 @@ ActiveRecord::Schema.define(version: 20130417130817) do
   enable_extension "hstore"
 
   create_table "articles", force: true do |t|
-    t.string   "title"
-    t.text     "body"
+    t.string   "headword"
+    t.string   "clarification"
+    t.text     "xhtml"
     t.hstore   "metadata"
     t.datetime "created_at"
     t.datetime "updated_at"

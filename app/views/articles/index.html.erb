@@ -3,8 +3,9 @@
 <table>
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Body</th>
+      <th>Headword</th>
+      <th>Clarification</th>
+      <th>Xhtml</th>
       <th></th>
       <th></th>
       <th></th>
@@ -14,10 +15,11 @@
   <tbody>
     <% @articles.each do |article| %>
     <tr>
-      <td><%= article.title %></td>
-      <td><%= article.body %></td>
-      <td><%= link_to 'Show', article.becomes(Article) %></td>
-      <td><%= link_to 'Edit', edit_article_path(article.becomes(Article)) %></td>
+      <td><%= article.headword %></td>
+      <td><%= article.clarification %></td>
+      <td><%= article.xhtml %></td>
+      <td><%= link_to 'Show', article_path(article, type: article.type) %></td>
+      <td><%= link_to 'Edit', edit_article_path(article, type: article.type) %></td>
       <td><%= link_to 'Destroy', article.becomes(Article), method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
     <% end %>

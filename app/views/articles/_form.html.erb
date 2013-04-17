@@ -1,4 +1,4 @@
-<%= form_for(@article.becomes(Article)) do |f| %>
+<%= form_for(@article, url: article_path(@article)) do |f| %>
   <% if @article.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
@@ -12,14 +12,18 @@
   <% end %>
   <%= hidden_field_tag :type, @type %>
   <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
+    <%= f.label :headword %><br />
+    <%= f.text_field :headword %>
   </div>
   <div class="field">
-    <%= f.label :body %><br />
-    <%= f.text_area :body %>
+    <%= f.label :clarification %><br />
+    <%= f.text_field :clarification %>
   </div>
-  <%= render "/articles/#{@type}/form_fields", f: f %>
+  <div class="field">
+    <%= f.label :xhtml %><br />
+    <%= f.text_area :xhtml %>
+  </div>
+  <%= render "/articles/#{@type.split('::').last.downcase}/form_fields", f: f %>
   <div class="actions">
     <%= f.submit %>
   </div>

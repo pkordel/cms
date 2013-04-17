@@ -69,10 +69,13 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :body, :pronunciation)
+      # TODO: try @article.instance_methods(false) to get dynamic hstore attributes
+      # params.require(:article).permit(:headword, :clarification, :xhtml, :pronunciation)
+      article_type = @type.gsub('::', '_').downcase.to_sym
+      params.require(article_type).permit!
     end
 
     def klass
-      "Article::#{@type.titleize}".constantize
+      @type.constantize
     end
 end

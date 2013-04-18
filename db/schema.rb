@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130417130817) do
+ActiveRecord::Schema.define(version: 20130418084518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20130417130817) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "type"
+    t.string   "state"
   end
 
   add_index "articles", ["metadata"], name: "articles_gin_metadata", using: :gin

@@ -47,3 +47,4 @@ group :development, :test do
 end
 
 gem 'state_machine'
+  

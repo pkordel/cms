@@ -45,3 +45,5 @@ group :development, :test do
   gem 'minitest-rails'
   gem 'minitest-rails-capybara'
 end
+
+gem 'state_machine'

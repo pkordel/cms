@@ -69,14 +69,17 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      # TODO: try @article.instance_methods(false) to get dynamic hstore attributes
-      # params.require(:article).permit(:headword, :clarification, :xhtml, :pronunciation)
-      article_type = ["article", @type].join('_').downcase
-      params.require(article_type).permit!
+      permitted_params = [:headword, :clarification, :xhtml]
+      permitted_params += klass.parents.first.instance_methods(false).reject{ |m| m.to_s.match('=') }
+      permitted_params += klass.instance_methods(false).reject{ |m| m.to_s.match('=') }
+
+      article_param = klass.model_name.param_key
+
+      params.require(article_param).permit permitted_params
     end
 
     def klass
       @type ||= 'general'
-      "Article::#{@type.camelize}".constantize
+      @klass ||= "Article::#{@type.camelize}".constantize
     end
 end

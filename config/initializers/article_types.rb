@@ -1,1 +1,1 @@
-ARTICLE_TYPES = %w(Article::General Article::Biography Article::Country Article::City)
+ARTICLE_TYPES = %w(general biography country city)

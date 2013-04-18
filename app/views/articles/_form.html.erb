@@ -23,7 +23,7 @@
     <%= f.label :xhtml %><br />
     <%= f.text_area :xhtml %>
   </div>
-  <%= render "/articles/#{@type.split('::').last.downcase}/form_fields", f: f %>
+  <%= render "/articles/#{type_for @article}/form_fields", f: f %>
   <div class="actions">
     <%= f.submit %>
   </div>

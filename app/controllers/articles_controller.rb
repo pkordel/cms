@@ -42,7 +42,7 @@ class ArticlesController < ApplicationController
   def update
     respond_to do |format|
       if @article.update(article_params)
-        format.html { redirect_to @article.becomes(Article), notice: 'Article was successfully updated.' }
+        format.html { redirect_to article_path(@article, type: type_for(@article)), notice: 'Article was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -71,11 +71,12 @@ class ArticlesController < ApplicationController
     def article_params
       # TODO: try @article.instance_methods(false) to get dynamic hstore attributes
       # params.require(:article).permit(:headword, :clarification, :xhtml, :pronunciation)
-      article_type = @type.gsub('::', '_').downcase.to_sym
+      article_type = ["article", @type].join('_').downcase
       params.require(article_type).permit!
     end
 
     def klass
-      @type.constantize
+      @type ||= 'general'
+      "Article::#{@type.camelize}".constantize
     end
 end

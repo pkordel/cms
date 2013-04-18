@@ -30,6 +30,6 @@
 
 <br />
 <%= form_tag new_article_path, method: :get do %>
-  <%= select_tag :type, options_for_select(ARTICLE_TYPES) %>
+  <%= select_tag :type, options_for_select(ARTICLE_TYPES.map(&:titlecase)) %>
   <%= submit_tag 'New Article' %>
 <%- end -%>

@@ -3,6 +3,10 @@ class Article < ActiveRecord::Base
 
   state_machine initial: :draft_in_progress do
 
+    state :published do
+      validates :headword, presence: true
+    end
+    
     event :submit do
       transition :draft_in_progress => :pending_review
     end

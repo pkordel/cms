@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :set_article_type
 
   def type_for article
+    return "" unless article && article.type.present?
     article.type.split('::').last.downcase
   end
   helper_method :type_for

@@ -21,6 +21,6 @@
   </div>
   <%= render "form_fields", f: f %>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Save' %> <%= check_box_tag :save_as_draft %> <%= label_tag :save_as_draft, 'Save as Draft' %>
   </div>
 <% end %>

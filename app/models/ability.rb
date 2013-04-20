@@ -10,14 +10,13 @@ class Ability
       can :submit, Article
     elsif user.editor?
       can :manage, Article
-      can :manage, Taxonomy
+      can :publish, Article
       can :approve, Article
       can :reject, Article
     else
       can :read, Article
     end
 
-    i
     #
     # The first argument to `can` is the action you are giving the user
     # permission to do.

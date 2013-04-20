@@ -2,7 +2,7 @@ class Article < ActiveRecord::Base
   hstore_accessor :metadata, :tag, :pronunciation, :etymology, :alternative_form
 
   belongs_to :user
-  
+
   def hstore_keys
     self.class.hstore_keys
   end
@@ -21,6 +21,10 @@ class Article < ActiveRecord::Base
 
     event :approve do
       transition :pending_review => :published
+    end
+
+    event :publish do
+      transition [:draft_in_progress, :pending_review] => :published
     end
 
     event :reject do

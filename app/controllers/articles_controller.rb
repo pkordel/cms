@@ -29,8 +29,20 @@ class ArticlesController < ApplicationController
     @article = klass.new(article_params)
 
     respond_to do |format|
-      if @article.save
-        format.html { redirect_to articles_url, notice: 'Article was successfully created.' }
+      success = if params[:save_as_draft].present?
+        @article.save
+        notice = 'Draft was successfully created.'
+      else
+        if can? :publish, Article
+          @article.publish
+          notice = 'Article was successfully published.'
+        else
+          @article.submit
+          notice = 'Article was successfully submitted.'
+        end
+      end
+      if success
+        format.html { redirect_to articles_url, notice: notice }
         format.json { render action: 'show', status: :created, location: @article }
       else
         format.html { render action: 'new' }
@@ -88,7 +100,7 @@ class ArticlesController < ApplicationController
       params.require(article_param).
              permit(permitted_params).merge(user: current_user)
     end
-    
+
     def klass
       @type  ||= 'general'
       @klass ||= "Article::#{@type.camelize}".constantize

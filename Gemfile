@@ -47,4 +47,4 @@ group :development, :test do
 end
 
 gem 'state_machine'
-gem 'devise'
+gem 'devise', git: 'git://github.com/plataformatec/devise.git', branch: 'rails4'

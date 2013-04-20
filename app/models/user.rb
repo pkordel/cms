@@ -7,5 +7,5 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   # attr_accessible :email, :password, :password_confirmation, :remember_me
 
-  ROLES = %w[sub_editor bughunter user authoritative_editor editor]
+  ROLES = %w[user authoritative_editor editor sub_editor bughunter]
 end

@@ -1,10 +1,10 @@
 <h1>Articles</h1>
 
 <%- if user_signed_in? -%>
-  <%= form_tag new_article_path, method: :get do %>
+  <%= form_tag new_article_path, method: :get, class: 'form-inline' do %>
     <%= select_tag :type,
         options_for_select(ARTICLE_TYPES.map{ |t| [t.titleize, t] }) %>
-    <%= submit_tag 'New Article' %>
+    <%= submit_tag 'New Article', class: 'btn' %>
   <%- end -%>
 <%- end -%>
 

@@ -8,5 +8,6 @@
 
 author  = User.create email: 'author@example.com', password: '12345678', password_confirmation: '12345678', role: 'author'
 editor  = User.create email: 'editor@example.com', password: '12345678', password_confirmation: '12345678', role: 'editor'
-auth_ed = User.create email: 'auth@example.com', password: '12345678', password_confirmation: '12345678', role: 'authoritative_editor'
+auth_ed = User.create email: 'auth@example.com',   password: '12345678', password_confirmation: '12345678', role: 'authoritative_editor'
 
+Taxonomy.create([{ name: 'People' }, { name: 'Places' }, { name: 'Things' }])

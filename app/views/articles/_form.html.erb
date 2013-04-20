@@ -1,26 +1,33 @@
 <%= form_for(@article, url: article_path(@article)) do |f| %>
-  <% if @article.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
+  <fieldset>
+    <legend><%= @title %></legend>
+    <% if @article.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
 
-      <ul>
-      <% @article.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <%= hidden_field_tag :type, @type %>
-  <div class="field">
-    <%= f.label :title %><br />
+        <ul>
+        <% @article.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= hidden_field_tag :type, @type %>
+
+    <%= f.label :title %>
     <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :content %><br />
+
+    <%= f.label :content %>
     <%= f.text_area :content %>
-  </div>
-  <%= render "form_fields", f: f %>
-  <div class="actions">
-    <%= f.submit 'Save' %> <%= check_box_tag :save_as_draft %> <%= label_tag :save_as_draft, 'Save as Draft' %>
-  </div>
+
+    <%= render "form_fields", f: f %>
+
+    <%= label_tag :save_as_draft, class: 'checkbox' do %>
+      <%= check_box_tag :save_as_draft %> Save as Draft
+    <% end %>
+
+    <%= f.submit 'Save', class: 'btn' %>
+    <%= link_to 'Cancel', articles_path, class: 'btn' %>
+  </fieldset>
 <% end %>

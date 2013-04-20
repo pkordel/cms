@@ -16,11 +16,13 @@ class ArticlesController < ApplicationController
 
   # GET /articles/new
   def new
+    @title = "New #{@type} article"
     @article = klass.new
   end
 
   # GET /articles/1/edit
   def edit
+    @title = "Edit #{@type} article"
   end
 
   # POST /articles

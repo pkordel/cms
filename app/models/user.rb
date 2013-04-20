@@ -4,8 +4,11 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # Setup accessible (or protected) attributes for your model
-  # attr_accessible :email, :password, :password_confirmation, :remember_me
+  ROLES = %w[user authoritative_editor editor]
 
-  ROLES = %w[user authoritative_editor editor sub_editor bughunter]
+  ROLES.each do |role_name|
+    define_method "#{role_name}?" do
+      self.role == role_name
+    end
+  end
 end

@@ -1,0 +1,10 @@
+<article>
+  <hgroup>
+    <h1><%= article.title %></h1>
+    <h2><%= article.clarification %></h2>
+  </hgroup>
+  <p><%= article.xhtml %></p>
+  <p><%= render "metadata", article: article %></p>
+  <p><%= link_to 'Edit', edit_article_path(article, type: type_for(article)) %> |
+     <%= link_to 'Destroy', article.becomes(Article), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+</article>

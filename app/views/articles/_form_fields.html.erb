@@ -1,0 +1,6 @@
+<%- @article.hstore_keys.each do |key| -%>
+  <div class="field">
+    <%= f.label key.to_sym %><br />
+    <%= f.text_field key.to_sym %>
+  </div>
+<%- end -%>

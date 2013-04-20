@@ -1,0 +1,8 @@
+<%- article.metadata.each_key do |key| -%>
+  <%- if (value = article.send(key)) && value.present? -%>
+    <p>
+      <strong><%= key.titleize %>:</strong>
+      <%= value %>
+    </p>
+  <%- end -%>
+<%- end -%>

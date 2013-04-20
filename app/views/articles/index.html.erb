@@ -1,35 +1,11 @@
-<h1>Listing articles</h1>
+<h1>Articles</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Type</th>
-      <th>Headword</th>
-      <th>Clarification</th>
-      <th>Xhtml</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @articles.each do |article| %>
-    <tr>
-      <td><%= type_for article %></td>
-      <td><%= article.headword %></td>
-      <td><%= article.clarification %></td>
-      <td><%= article.xhtml %></td>
-      <td><%= link_to 'Show', article_path(article, type: type_for(article)) %></td>
-      <td><%= link_to 'Edit', edit_article_path(article, type: type_for(article)) %></td>
-      <td><%= link_to 'Destroy', article.becomes(Article), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br />
 <%= form_tag new_article_path, method: :get do %>
-  <%= select_tag :type, options_for_select(ARTICLE_TYPES.map(&:titlecase)) %>
+  <%= select_tag :type,
+      options_for_select(ARTICLE_TYPES.map{ |t| [t.titleize, t] }) %>
   <%= submit_tag 'New Article' %>
+<%- end -%>
+
+<%- @articles.each do |article| -%>
+  <%= render 'article', article: article %>
 <%- end -%>

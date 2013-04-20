@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+    @articles = Article.order('updated_at desc')
   end
 
   # GET /articles/1
@@ -42,7 +42,7 @@ class ArticlesController < ApplicationController
   def update
     respond_to do |format|
       if @article.update(article_params)
-        format.html { redirect_to article_path(@article, type: type_for(@article)), notice: 'Article was successfully updated.' }
+        format.html { redirect_to articles_url, notice: 'Article was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -70,8 +70,7 @@ class ArticlesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
       permitted_params = [:headword, :clarification, :xhtml]
-      permitted_params += klass.parents.first.instance_methods(false).reject{ |m| m.to_s.match('=') }
-      permitted_params += klass.instance_methods(false).reject{ |m| m.to_s.match('=') }
+      permitted_params += klass.hstore_keys
 
       article_param = klass.model_name.param_key
 
@@ -79,7 +78,7 @@ class ArticlesController < ApplicationController
     end
 
     def klass
-      @type ||= 'general'
+      @type  ||= 'general'
       @klass ||= "Article::#{@type.camelize}".constantize
     end
 end

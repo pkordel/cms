@@ -3,8 +3,6 @@ class Article::Biography < Article
                              :place_of_death, :death_date,
                              :birthplace, :birth_date, :gender
   def title
-    title = "#{firstname} #{lastname}"
-    title << " - #{clarification}" if clarification.present?
-    title
+    "#{firstname} #{lastname}"
   end
 end

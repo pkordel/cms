@@ -1,18 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Headword:</strong>
-  <%= @article.headword %>
+  <strong>Title:</strong>
+  <%= @article.title %>
 </p>
 
 <p>
-  <strong>Clarification:</strong>
-  <%= @article.clarification %>
-</p>
-
-<p>
-  <strong>Xhtml:</strong>
-  <%= @article.xhtml %>
+  <strong>Content:</strong>
+  <%= @article.content %>
 </p>
 
 <%= render "metadata", article: @article %>

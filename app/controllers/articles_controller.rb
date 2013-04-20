@@ -80,7 +80,7 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      permitted_params = [:headword, :clarification, :xhtml]
+      permitted_params = [:title, :content]
       permitted_params += klass.hstore_keys
 
       article_param = klass.model_name.param_key

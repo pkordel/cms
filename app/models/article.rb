@@ -25,10 +25,5 @@ class Article < ActiveRecord::Base
       transition :pending_review => :rejected
     end
   end
-
-  def title
-    title = "#{headword}"
-    title << " - #{clarification}" if clarification.present?
-    title
-  end
+  
 end

@@ -4,7 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  ROLES = %w[user authoritative_editor editor]
+  has_many :articles
+
+  ROLES = %w[author authoritative_editor editor]
 
   ROLES.each do |role_name|
     define_method "#{role_name}?" do

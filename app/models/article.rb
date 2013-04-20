@@ -1,6 +1,8 @@
 class Article < ActiveRecord::Base
   hstore_accessor :metadata, :tag, :pronunciation, :etymology, :alternative_form
 
+  belongs_to :user
+  
   def hstore_keys
     self.class.hstore_keys
   end
@@ -25,5 +27,5 @@ class Article < ActiveRecord::Base
       transition :pending_review => :rejected
     end
   end
-  
+
 end

@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 # gem 'rails', github: 'rails/rails'
-# gem 'rails', '4.0.0.beta1'
 gem 'rails', path: '../rails'
 
 gem 'pg'
@@ -48,3 +47,4 @@ end
 
 gem 'state_machine'
 gem 'devise', git: 'git://github.com/plataformatec/devise.git', branch: 'rails4'
+gem 'cancan'

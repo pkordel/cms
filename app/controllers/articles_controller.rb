@@ -85,9 +85,10 @@ class ArticlesController < ApplicationController
 
       article_param = klass.model_name.param_key
 
-      params.require(article_param).permit permitted_params
+      params.require(article_param).
+             permit(permitted_params).merge(user: current_user)
     end
-
+    
     def klass
       @type  ||= 'general'
       @klass ||= "Article::#{@type.camelize}".constantize

@@ -1,4 +1,5 @@
 Cms::Application.routes.draw do
+  devise_for :users
   resources :articles
   # resources :article_generals, controller: :articles
   # resources :article_biographies, controller: :articles

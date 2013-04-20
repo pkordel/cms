@@ -5,11 +5,9 @@ class Article < ActiveRecord::Base
     self.class.hstore_keys
   end
 
-  state_machine initial: :draft_in_progress do
+  scope :published, -> { Article.with_state(:published).order('updated_at desc') }
 
-    state :published do
-      validates :headword, presence: true
-    end
+  state_machine initial: :draft_in_progress do
 
     event :submit do
       transition :draft_in_progress => :pending_review

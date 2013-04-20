@@ -1,11 +1,12 @@
 class ArticlesController < ApplicationController
+  before_action :set_article_type
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.order('updated_at desc')
+    @articles = Article.published
   end
 
   # GET /articles/1
@@ -63,6 +64,15 @@ class ArticlesController < ApplicationController
   end
 
   private
+
+    def set_article_type
+      @type = if (article_type = params[:type]) && ARTICLE_TYPES.include?(article_type)
+        article_type
+      else
+        'general'
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_article
       @article = Article.find(params[:id])

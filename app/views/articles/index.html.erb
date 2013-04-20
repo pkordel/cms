@@ -1,9 +1,11 @@
 <h1>Articles</h1>
 
-<%= form_tag new_article_path, method: :get do %>
-  <%= select_tag :type,
-      options_for_select(ARTICLE_TYPES.map{ |t| [t.titleize, t] }) %>
-  <%= submit_tag 'New Article' %>
+<%- if user_signed_in? -%>
+  <%= form_tag new_article_path, method: :get do %>
+    <%= select_tag :type,
+        options_for_select(ARTICLE_TYPES.map{ |t| [t.titleize, t] }) %>
+    <%= submit_tag 'New Article' %>
+  <%- end -%>
 <%- end -%>
 
 <%- @articles.each do |article| -%>

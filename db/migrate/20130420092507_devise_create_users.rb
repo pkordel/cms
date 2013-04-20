@@ -34,7 +34,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       # t.string :authentication_token
 
       t.timestamps
-      t.string :role, default: 'user'
+      t.string :role, default: 'author'
     end
 
     add_index :users, :email,                :unique => true

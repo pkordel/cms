@@ -19,7 +19,7 @@
     <%= f.text_field :title %>
 
     <%= f.label :content %>
-    <%= f.text_area :content %>
+    <%= f.text_area :content, rows: 10   %>
 
     <%= render "form_fields", f: f %>
 
@@ -27,7 +27,7 @@
       <%= check_box_tag :save_as_draft %> Save as Draft
     <% end %>
 
-    <%= f.submit 'Save', class: 'btn' %>
-    <%= link_to 'Cancel', articles_path, class: 'btn' %>
+    <%= f.submit 'Save', class: 'btn btn-large btn-primary' %>
+    <%= link_to 'Cancel', articles_path, class: 'btn btn-large' %>
   </fieldset>
 <% end %>

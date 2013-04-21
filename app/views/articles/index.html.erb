@@ -4,7 +4,7 @@
   <%= form_tag new_article_path, method: :get, class: 'form-inline' do %>
     <%= select_tag :type,
         options_for_select(ARTICLE_TYPES.map{ |t| [t.titleize, t] }) %>
-    <%= submit_tag 'New Article', class: 'btn' %>
+    <%= submit_tag 'New Article', class: 'btn btn-primary' %>
   <%- end -%>
 <%- end -%>
 

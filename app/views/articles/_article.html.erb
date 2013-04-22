@@ -4,6 +4,13 @@
   </hgroup>
   <p><%= content_for article %></p>
   <p><%= render "metadata", article: article %></p>
-  <p><%= link_to 'Edit', edit_article_path(article, type: type_for(article)) %> |
-     <%= link_to 'Destroy', article.becomes(Article), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+  <br />
+  <%- if user_signed_in? -%>
+    <%- if can? :update, article -%>
+      <%= link_to 'Edit', edit_article_path(article, type: type_for(article)) %>
+    <%- end -%>
+    <%- if can? :destroy, article -%>
+      <%= link_to 'Destroy', article.becomes(Article), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%- end -%>
+  <%- end -%>
 </article>

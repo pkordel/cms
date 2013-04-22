@@ -14,13 +14,13 @@
     <% end %>
 
     <%= hidden_field_tag :type, @type %>
-
-    <%= f.label :title %>
+    <%= f.label :title, Article.human_attribute_name(:title) %>
     <%= f.text_field :title %>
-
-    <%= f.label :content %>
-    <%= f.text_area :content, rows: 10   %>
-
+    <%= f.label :content, Article.human_attribute_name(:content) %>
+    <%= f.text_area :content, rows: 10 %>
+    <%= f.label :taxonomy, Taxonomy.model_name.human %>
+    <%= f.collection_select :taxonomy_id, Taxonomy.all, :id, :name %>
+    
     <%= render "form_fields", f: f %>
 
     <%= label_tag :save_as_draft, class: 'checkbox' do %>

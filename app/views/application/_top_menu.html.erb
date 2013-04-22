@@ -1,0 +1,29 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to 'CMS', root_path, class: 'brand' %>
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          <%= nav_link :articles %>
+          <%- if current_user -%>
+            <%= nav_link :taxonomies if can? :manage, Taxonomy %>
+            <%= nav_link :registrations, name: 'Profile',
+                path: edit_user_registration_path %>
+            <%= nav_link :sessions, name: 'Sign out',
+                path: destroy_user_session_path, method: :delete %>
+          <%- else -%>
+            <%= nav_link :sessions, name: 'Sign in',
+                path: new_user_session_path %>
+            <%= nav_link :registrations, name: 'Sign up',
+                path: new_user_registration_path %>
+          <%- end -%>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>

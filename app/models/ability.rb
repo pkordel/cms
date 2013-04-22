@@ -6,9 +6,11 @@ class Ability
     user ||= User.new # guest user (not logged in)
     if user.author?
       can :create, Article
-      can :update, Article
+      can :update, Article, creator_id: user.id
       can :submit, Article
     elsif user.editor?
+      can :manage, Taxonomy
+      can :manage, User
       can :manage, Article
       can :publish, Article
       can :approve, Article

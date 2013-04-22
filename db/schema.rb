@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130420184840) do
+ActiveRecord::Schema.define(version: 20130422035254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,15 +21,27 @@ ActiveRecord::Schema.define(version: 20130420184840) do
     t.string   "title"
     t.text     "content"
     t.hstore   "metadata"
+    t.integer  "creator_id"
+    t.integer  "taxonomy_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "type"
     t.string   "state"
-    t.integer  "user_id"
-    t.integer  "taxonomy_id"
   end
 
+  add_index "articles", ["creator_id"], name: "index_articles_on_creator_id", using: :btree
   add_index "articles", ["metadata"], name: "articles_gin_metadata", using: :gin
+  add_index "articles", ["taxonomy_id"], name: "index_articles_on_taxonomy_id", using: :btree
+
+  create_table "authorships", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "article_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "authorships", ["article_id"], name: "index_authorships_on_article_id", using: :btree
+  add_index "authorships", ["user_id"], name: "index_authorships_on_user_id", using: :btree
 
   create_table "taxonomies", force: true do |t|
     t.string   "name"

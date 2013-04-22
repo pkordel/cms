@@ -1,5 +1,3 @@
-<h1>Articles</h1>
-
 <%- if user_signed_in? -%>
   <%= form_tag new_article_path, method: :get, class: 'form-inline' do %>
     <%= select_tag :type,

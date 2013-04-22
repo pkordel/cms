@@ -32,7 +32,7 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       success = if params[:save_as_draft].present?
-        @article.save
+        @article.save_as_draft
         notice = 'Draft was successfully created.'
       else
         if can? :publish, Article
@@ -58,6 +58,7 @@ class ArticlesController < ApplicationController
   def update
     respond_to do |format|
       if @article.update(article_params)
+        @article.save_as_draft if params[:save_as_draft].present?
         format.html { redirect_to articles_url, notice: 'Article was successfully updated.' }
         format.json { head :no_content }
       else
@@ -94,13 +95,13 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      permitted_params = [:title, :content]
+      permitted_params = [:title, :content, :taxonomy_id]
       permitted_params += klass.hstore_keys
 
       article_param = klass.model_name.param_key
 
       params.require(article_param).
-             permit(permitted_params).merge(user: current_user)
+             permit(permitted_params).merge(creator: current_user)
     end
 
     def klass

@@ -1,11 +1,11 @@
 class Article < ActiveRecord::Base
   hstore_accessor :metadata, :tags, :pronunciation, :etymology, :alternative_form
 
-  belongs_to :user
+  belongs_to :creator, class_name: 'User'
   belongs_to :taxonomy
 
-  has_many :authorships
-  has_many :authors, through: :authorships, class_name: 'User'
+  has_many :authorships, dependent: :destroy
+  has_many :authors, through: :authorships, source: :user
 
   def hstore_keys
     self.class.hstore_keys
@@ -20,11 +20,11 @@ class Article < ActiveRecord::Base
   state_machine initial: :draft do
 
     event :save_as_draft do
-      transition :draft => :draft_in_progress
+      transition [:draft, :published, :pending_review] => :draft_in_progress
     end
 
     event :submit do
-      transition :draft_in_progress => :pending_review
+      transition [:draft, :draft_in_progress] => :pending_review
     end
 
     event :withdraw do
@@ -36,7 +36,7 @@ class Article < ActiveRecord::Base
     end
 
     event :publish do
-      transition [:draft_in_progress, :pending_review] => :published
+      transition [:draft, :draft_in_progress, :pending_review] => :published
     end
 
     event :reject do

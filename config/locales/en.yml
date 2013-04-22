@@ -20,7 +20,16 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    models:
+      taxonomy: Taxonomy
+      article: Article
+      user: User
+    attributes:
+      article:
+        title: Title
+        content: Content
+
   sub_editor: Sub editor
   bughunter: Bughunter
   user: User

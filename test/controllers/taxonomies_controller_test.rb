@@ -3,7 +3,7 @@ require "test_helper"
 describe TaxonomiesController do
 
   before do
-    @taxonomy = taxonomies(:one)
+    @taxonomy = Taxonomy.create(name: 'Eggs')
   end
 
   it "must get index" do

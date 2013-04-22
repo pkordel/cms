@@ -10,7 +10,8 @@ class User < ActiveRecord::Base
 
   ROLES.each do |role_name|
     define_method "#{role_name}?" do
-      self.role == role_name
+      read_attribute(:role) == role_name
     end
   end
+
 end

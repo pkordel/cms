@@ -2,7 +2,7 @@
   <hgroup>
     <h1><%= article.title %></h1>
   </hgroup>
-  <p><%= article.content %></p>
+  <p><%= content_for article %></p>
   <p><%= render "metadata", article: article %></p>
   <p><%= link_to 'Edit', edit_article_path(article, type: type_for(article)) %> |
      <%= link_to 'Destroy', article.becomes(Article), method: :delete, data: { confirm: 'Are you sure?' } %></p>

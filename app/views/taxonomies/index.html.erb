@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th>Name</th>
       <th></th>
       <th></th>
       <th></th>
@@ -12,6 +13,7 @@
   <tbody>
     <% @taxonomies.each do |taxonomy| %>
     <tr>
+      <td><%= taxonomy.name %></td>
       <td><%= link_to 'Show', taxonomy %></td>
       <td><%= link_to 'Edit', edit_taxonomy_path(taxonomy) %></td>
       <td><%= link_to 'Destroy', taxonomy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -22,4 +24,4 @@
 
 <br />
 
-<%= link_to 'New Taxonomy', new_taxonomy_path %>
+<%= link_to 'New Taxonomy', new_taxonomy_path, class: 'btn btn-large btn-primary' %>

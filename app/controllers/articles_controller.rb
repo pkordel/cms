@@ -105,6 +105,6 @@ class ArticlesController < ApplicationController
 
     def klass
       @type  ||= 'general'
-      @klass ||= "Article::#{@type.camelize}".constantize
+      @klass ||= "article/#{@type}".camelize.constantize
     end
 end

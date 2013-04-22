@@ -1,15 +1,27 @@
 class Article < ActiveRecord::Base
-  hstore_accessor :metadata, :tag, :pronunciation, :etymology, :alternative_form
+  hstore_accessor :metadata, :tags, :pronunciation, :etymology, :alternative_form
 
   belongs_to :user
+  belongs_to :taxonomy
+
+  has_many :authorships
+  has_many :authors, through: :authorships, class_name: 'User'
 
   def hstore_keys
     self.class.hstore_keys
   end
 
-  scope :published, -> { Article.with_state(:published).order('updated_at desc') }
+  scope :draft,             -> { with_state(:draft) }
+  scope :draft_in_progress, -> { with_state(:draft_in_progress) }
+  scope :pending_review,    -> { with_state(:pending_review) }
+  scope :published,         -> { with_state(:published) }
+  scope :recent,            -> { order('updated_at desc') }
 
-  state_machine initial: :draft_in_progress do
+  state_machine initial: :draft do
+
+    event :save_as_draft do
+      transition :draft => :draft_in_progress
+    end
 
     event :submit do
       transition :draft_in_progress => :pending_review

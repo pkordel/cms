@@ -2,7 +2,7 @@ require "test_helper"
 
 describe TaxonomiesController do
   include Devise::TestHelpers
-  
+
   before do
     @taxonomy = Taxonomy.create(name: 'Eggs')
     @editor = User.create(email: 'editor@exmaple.com', password: '12345678')
@@ -23,10 +23,10 @@ describe TaxonomiesController do
 
   it "must create taxonomy" do
     assert_difference('Taxonomy.count') do
-      post :create, taxonomy: {  }
+      post :create, taxonomy: { name: 'foo' }
     end
 
-    assert_redirected_to taxonomy_path(assigns(:taxonomy))
+    assert_redirected_to taxonomies_path
   end
 
   it "must show taxonomy" do
@@ -40,8 +40,8 @@ describe TaxonomiesController do
   end
 
   it "must update taxonomy" do
-    put :update, id: @taxonomy, taxonomy: {  }
-    assert_redirected_to taxonomy_path(assigns(:taxonomy))
+    put :update, id: @taxonomy, taxonomy: { name: 'bar' }
+    assert_redirected_to taxonomies_path
   end
 
   it "must destroy taxonomy" do

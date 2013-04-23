@@ -5,7 +5,7 @@ class Article < ActiveRecord::Base
   belongs_to :taxonomy, inverse_of: :articles
 
   has_many :authorships, dependent: :destroy, inverse_of: :article
-  has_many :authors, through: :authorships, source: :user, inverse_of: :article
+  has_many :authors, through: :authorships, source: :user
 
   def hstore_keys
     self.class.hstore_keys

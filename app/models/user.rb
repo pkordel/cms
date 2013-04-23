@@ -4,8 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :articles, foreign_key: :creator_id
-  has_many :taxonomies, foreign_key: :authoritative_editor_id
+  has_many :articles, foreign_key: :creator_id, inverse_of: :creator
+  has_many :taxonomies, foreign_key: :authoritative_editor_id, inverse_of: :authoritative_editor
 
   ROLES = %w[author authoritative_editor editor]
 

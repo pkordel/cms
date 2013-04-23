@@ -10,4 +10,12 @@ author  = User.create email: 'author@example.com', password: '12345678', passwor
 editor  = User.create email: 'editor@example.com', password: '12345678', password_confirmation: '12345678', role: 'editor'
 auth_ed = User.create email: 'auth@example.com',   password: '12345678', password_confirmation: '12345678', role: 'authoritative_editor'
 
-Taxonomy.create([{ name: 'People' }, { name: 'Places' }, { name: 'Things' }])
+Taxonomy.create(
+  [
+    { name: 'Medicin', authoritative_editor: auth_ed ,
+      parent: Taxonomy.create(name: 'Nature and Technoloy', authoritative_editor: auth_ed) },
+    { name: 'Geography', authoritative_editor: auth_ed,
+      parent: Taxonomy.create(name: 'Society and History', authoritative_editor: auth_ed) },
+    { name: 'Music', authoritative_editor: auth_ed,
+      parent: Taxonomy.create(name: 'Art and Culture', authoritative_editor: auth_ed) }
+  ])

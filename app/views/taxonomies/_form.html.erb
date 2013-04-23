@@ -1,15 +1,20 @@
 <%= form_for(@taxonomy) do |f| %>
-  <% if @taxonomy.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@taxonomy.errors.count, "error") %> prohibited this taxonomy from being saved:</h2>
+  <fieldset>
+    <% if @taxonomy.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@taxonomy.errors.count, "error") %> prohibited this taxonomy from being saved:</h2>
 
-      <ul>
-      <% @taxonomy.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <%= f.text_field :name, placeholder: 'Name' %>
-  <%= f.submit class: 'btn btn-large btn-primary' %>
+        <ul>
+        <% @taxonomy.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= f.label :name, Taxonomy.human_attribute_name(:name) %>
+    <%= f.text_field :name, placeholder: 'Name' %>
+    <%= f.label :parent %>
+    <%= f.collection_select :parent_id, (Taxonomy.all - [@taxonomy]), :id, :name, include_blank: true %>
+    <%= f.submit class: 'btn btn-large btn-primary' %>
+  </fieldset>
 <% end %>

@@ -4,17 +4,19 @@
 
   <%= f.email_field :email, class: 'input-block-level',
       placeholder: 'Email address' %>
-  <i>(leave blank if you don't want to change it)</i>
   <%= f.password_field :password, class: 'input-block-level',
       placeholder: 'Password' %>
+  <span class="help-block">(leave blank if you don't want to change it)</span>
   <%= f.password_field :password_confirmation, class: 'input-block-level',
       placeholder: 'Password confirmation' %>
-  <i>(we need your current password to confirm your changes)</i>
   <%= f.password_field :current_password, class: 'input-block-level',
       placeholder: 'Current password' %>
-  <%= f.label :role %>
-  <%= f.collection_select :role, User::ROLES, :to_s, :humanize,
-      class: 'input-block-level' %>
+  <span class="help-block">(we need your current password to confirm your changes)</span>
+  <%- if current_user.editor? -%>
+    <%= f.label :role %>
+    <%= f.collection_select :role, User::ROLES, :to_s, :humanize,
+        class: 'input-block-level' %>
+  <%- end -%>
   <%= f.submit "Update", class: 'btn btn-large btn-primary' %>
   <div>
     <h3>Cancel my account</h3>

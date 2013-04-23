@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(version: 20130422035254) do
   create_table "taxonomies", force: true do |t|
     t.string   "name"
     t.string   "ancestry"
+    t.integer  "position",                default: 0
+    t.integer  "authoritative_editor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

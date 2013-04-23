@@ -4,7 +4,7 @@ class TaxonomiesController < ApplicationController
   # GET /taxonomies
   # GET /taxonomies.json
   def index
-    @taxonomies = Taxonomy.all
+    @taxonomies = Taxonomy.order([:ancestry, :name])
   end
 
   # GET /taxonomies/1
@@ -28,7 +28,7 @@ class TaxonomiesController < ApplicationController
 
     respond_to do |format|
       if @taxonomy.save
-        format.html { redirect_to @taxonomy, notice: 'Taxonomy was successfully created.' }
+        format.html { redirect_to taxonomies_url, notice: 'Taxonomy was successfully created.' }
         format.json { render action: 'show', status: :created, location: @taxonomy }
       else
         format.html { render action: 'new' }
@@ -42,7 +42,7 @@ class TaxonomiesController < ApplicationController
   def update
     respond_to do |format|
       if @taxonomy.update(taxonomy_params)
-        format.html { redirect_to @taxonomy, notice: 'Taxonomy was successfully updated.' }
+        format.html { redirect_to taxonomies_url, notice: 'Taxonomy was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -69,6 +69,6 @@ class TaxonomiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def taxonomy_params
-      params[:taxonomy]
+      params.require(:taxonomy).permit(:name, :parent_id)
     end
 end

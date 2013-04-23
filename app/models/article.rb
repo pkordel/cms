@@ -1,11 +1,11 @@
 class Article < ActiveRecord::Base
   hstore_accessor :metadata, :tags, :pronunciation, :etymology, :alternative_form
 
-  belongs_to :creator, class_name: 'User'
-  belongs_to :taxonomy
+  belongs_to :creator, class_name: 'User', inverse_of: :articles
+  belongs_to :taxonomy, inverse_of: :articles
 
-  has_many :authorships, dependent: :destroy
-  has_many :authors, through: :authorships, source: :user
+  has_many :authorships, dependent: :destroy, inverse_of: :article
+  has_many :authors, through: :authorships, source: :user, inverse_of: :article
 
   def hstore_keys
     self.class.hstore_keys

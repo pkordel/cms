@@ -7,8 +7,6 @@
       placeholder: 'Password' %>
   <%= f.password_field :password_confirmation, class: 'input-block-level',
       placeholder: 'Password confirmation' %>
-  <%= f.label :role %>
-  <%= f.collection_select :role, User::ROLES, :to_s, :humanize %>
   <%= f.submit "Sign up", class: 'btn btn-large btn-primary' %>
   <div><%= render :partial => "devise/shared/links" %></div>
 <% end %>

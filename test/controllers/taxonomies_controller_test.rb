@@ -1,9 +1,13 @@
 require "test_helper"
 
 describe TaxonomiesController do
-
+  include Devise::TestHelpers
+  
   before do
     @taxonomy = Taxonomy.create(name: 'Eggs')
+    @editor = User.create(email: 'editor@exmaple.com', password: '12345678')
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+    sign_in @editor
   end
 
   it "must get index" do

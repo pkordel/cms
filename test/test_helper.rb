@@ -5,11 +5,9 @@ require "minitest/rails"
 require "minitest/rails/capybara"
 
 # Uncomment for awesome colorful output
-# require "minitest/pride"
+require "minitest/pride"
 
 class ActiveSupport::TestCase
-  # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
-  fixtures :all
 
   def sign_in_user user
     visit new_user_session_path
@@ -17,4 +15,5 @@ class ActiveSupport::TestCase
     fill_in('user_password', with: user.password)
     click_button 'Sign in'
   end
+  
 end

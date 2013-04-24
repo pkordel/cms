@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails', github: 'rails/rails'
-# gem 'rails', path: '../rails'
 
 gem 'pg'
 
@@ -43,6 +42,6 @@ group :development, :test do
 end
 
 gem 'state_machine'
-gem 'devise', git: 'git://github.com/plataformatec/devise.git', branch: 'rails4'
+gem 'devise', github: 'plataformatec/devise', branch: 'rails4'
 gem 'cancan'
-gem 'ancestry', git: 'git://github.com/stefankroes/ancestry.git', branch: 'master'
+gem 'ancestry', github: 'stefankroes/ancestry', branch: 'master'

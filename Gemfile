@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
-# gem 'rails', github: 'rails/rails'
-gem 'rails', path: '../rails'
+gem 'rails', github: 'rails/rails'
+# gem 'rails', path: '../rails'
 
 gem 'pg'
 

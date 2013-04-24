@@ -45,4 +45,4 @@ end
 gem 'state_machine'
 gem 'devise', git: 'git://github.com/plataformatec/devise.git', branch: 'rails4'
 gem 'cancan'
-gem 'ancestry'
+gem 'ancestry', git: 'git://github.com/stefankroes/ancestry.git', branch: 'master'
